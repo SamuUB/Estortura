@@ -34,10 +34,13 @@ ppal:
     or r11, r29, r0          ; Guardar resultado
     
     ; Prueba de BuscaCar
-    LOAD(r10, c_buscar)
+    LEA(r10, c_buscar)
+    ld.bu r10, r10, 0        ; Cargar carácter a buscar en r10
     LEA(r12, cadena1)
-    LOAD(r13, desde)
-    LOAD(r14, hasta)
+    LEA(r13, desde)
+    ld r13, r13, 0           ; Cargar valor de 'desde'
+    LEA(r14, hasta)
+    ld r14, r14, 0           ; Cargar valor de 'hasta'
     PUSH(r14)                ; to
     PUSH(r13)                ; from
     PUSH(r12)                ; ref
