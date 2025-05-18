@@ -238,10 +238,14 @@ Comprime:
     ; 1. Determinar longitud del texto
     PUSH(r2)                 ; Pasar texto como parámetro
     bsr LongCad              ; Llamar a LongCad
-    addu r30, r30, 4         ; Ajustar pila
+    POP(r2);
     or r4, r29, r0           ; r4 = longitud del texto
     
     ; 2. Reservar espacio en pila para pilaZona3
+    ; Se reserva espacio en la pila para almacenar los datos comprimidos.
+    ; La longitud se ajusta para garantizar que la dirección esté alineada
+    ; a un múltiplo de 4, lo cual es necesario para evitar errores de acceso
+    ; y mejorar el rendimiento en operaciones posteriores.
     or r5, r4, r0            ; r5 = longitud
     addu r5, r5, 3           ; Ajustar para alinear
     and r5, r5, 0xFFFC       ; Alinear a múltiplo de 4
